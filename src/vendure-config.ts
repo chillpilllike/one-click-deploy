@@ -6,6 +6,8 @@ import {
 } from '@vendure/core';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin, configureS3AssetStorage } from '@vendure/asset-server-plugin';
+import { DefaultAssetNamingStrategy } from '@vendure/core';
+import { fromEnv } from '@aws-sdk/credential-providers';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import 'dotenv/config';
 import path from 'path';
@@ -66,20 +68,15 @@ export const config: VendureConfig = {
     plugins: [
         AssetServerPlugin.init({
             route: 'assets',
-            assetUploadDir: process.env.ASSET_UPLOAD_DIR || path.join(__dirname, '../static/assets'),
-            storageStrategyFactory: process.env.MINIO_ENDPOINT ? configureS3AssetStorage({
-                bucket: process.env.S3_BUCKET_NAME || 'vendure-assets',
-                credentials: {
-                    accessKeyId: process.env.S3_ACCESS_KEY || process.env.MINIO_ACCESS_KEY,
-                    secretAccessKey: process.env.S3_SECRET_KEY || process.env.MINIO_SECRET_KEY,
-                },
+            assetUploadDir: path.join(__dirname, 'assets'),
+            namingStrategy: new DefaultAssetNamingStrategy(),
+            storageStrategyFactory: configureS3AssetStorage({
+                bucket: 'my-s3-bucket',
+                credentials: fromEnv(), // or any other credential provider
                 nativeS3Configuration: {
-                    endpoint: process.env.MINIO_ENDPOINT || undefined,
-                    forcePathStyle: !!process.env.MINIO_ENDPOINT,
-                    signatureVersion: 'v4',
-                    region: process.env.S3_REGION || 'us-east-1',
+                    region: process.env.AWS_REGION,
                 },
-            }) : undefined,
+            }),
         }),
         DefaultJobQueuePlugin.init({ useDatabaseForBuffer: true }),
         DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: true }),
