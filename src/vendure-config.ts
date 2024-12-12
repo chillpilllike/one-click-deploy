@@ -60,10 +60,21 @@ export const config: VendureConfig = {
         paymentMethodHandlers: [dummyPaymentHandler],
     },
     customFields: {
-        Product: [{
-            name: 'test',
-            type: 'string',
-        }],
+        Product: [
+            {
+                name: 'type',
+                type: 'string',
+            },
+            {
+                name: 'upc',
+                type: 'string', // You can also set `length` if needed
+                unique: true, // If UPC must be unique across products
+            },
+            {
+                name: 'weight',
+                type: 'float', // For weights as decimal numbers
+            },
+        ],
     },
     plugins: [
         AssetServerPlugin.init({
