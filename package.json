@@ -12,14 +12,14 @@
     "start": "concurrently yarn:start:*"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.554.0",
-    "@aws-sdk/lib-storage": "^3.554.0",
-    "@vendure/admin-ui-plugin": "^2.2.0",
-    "@vendure/asset-server-plugin": "^2.2.0",
-    "@vendure/cli": "^2.2.0",
-    "@vendure/core": "^2.2.0",
-    "@vendure/create": "^2.2.0",
-    "@vendure/email-plugin": "^2.2.0",
+    "@aws-sdk/client-s3": "latest",
+    "@aws-sdk/lib-storage": "latest",
+    "@vendure/admin-ui-plugin": "latest",
+    "@vendure/asset-server-plugin": "latest",
+    "@vendure/cli": "latest",
+    "@vendure/core": "latest",
+    "@vendure/create": "latest",
+    "@vendure/email-plugin": "latest",
     "dotenv": "16.3.1",
     "pg": "8.11.5",
     "typescript": "5.3.3"
