@@ -78,7 +78,7 @@ export const config: VendureConfig = {
             // Minio as the asset storage provider. Otherwise, we'll use the
             // default local provider.
             storageStrategyFactory: process.env.MINIO_ENDPOINT ?  configureS3AssetStorage({
-                bucket: 'vendure-assets',
+                bucket: 'lifefuelau',
                 credentials: {
                     accessKeyId: process.env.MINIO_ACCESS_KEY,
                     secretAccessKey: process.env.MINIO_SECRET_KEY,
