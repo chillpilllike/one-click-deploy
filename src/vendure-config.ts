@@ -71,7 +71,7 @@ export const config: VendureConfig = {
                 unique: true, // If UPC must be unique across products
             },
             {
-                name: 'sku',
+                name: 'sku2',
                 type: 'string', // You can also set `length` if needed
                 unique: true, // If sku must be unique across products
             },
