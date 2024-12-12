@@ -42,7 +42,7 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'postgres',
-        synchronize: false,
+        synchronize: true,
         migrations: [path.join(__dirname, './migrations/*.+(ts|js)')],
         logging: false,
         database: process.env.DB_NAME,
