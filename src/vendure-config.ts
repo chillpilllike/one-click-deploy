@@ -71,7 +71,7 @@ export const config: VendureConfig = {
             assetUploadDir: path.join(__dirname, 'assets'),
             namingStrategy: new DefaultAssetNamingStrategy(),
             storageStrategyFactory: configureS3AssetStorage({
-                bucket: process.env.S3_BUCKET_NAME,
+                bucket: 'venduretest',
                 credentials: fromEnv(), // or any other credential provider
                 nativeS3Configuration: {
                     region: process.env.AWS_REGION,
