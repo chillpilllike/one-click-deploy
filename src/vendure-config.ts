@@ -61,6 +61,9 @@ export const config: VendureConfig = {
                   ca: process.env.DB_CA_CERT,
               }
             : undefined,
+        extra: {
+            max: 100, // Increased connection pool size
+        },
     },
     paymentOptions: {
         paymentMethodHandlers: [dummyPaymentHandler],
