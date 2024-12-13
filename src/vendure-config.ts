@@ -116,6 +116,7 @@ export const config: VendureConfig = {
                 port: 6379,
                 username: 'default',
                 password: '2653a8b81def45563b3b',
+                maxRetriesPerRequest: null,
             },
             workerOptions: {
                 concurrency: 100,
