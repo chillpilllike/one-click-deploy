@@ -85,6 +85,14 @@ export const config: VendureConfig = {
                 name: 'weight',
                 type: 'float',
             },
+            {
+                name: 'brand',
+                type: 'string', // store single brand
+            },
+            {
+                name: 'tags',
+                type: 'string', // store comma-separated tags
+            },
         ],
     },
     plugins: [
