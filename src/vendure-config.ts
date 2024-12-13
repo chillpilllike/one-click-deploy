@@ -110,7 +110,7 @@ export const config: VendureConfig = {
                 password: '2653a8b81def45563b3b',
             },
             workerOptions: {
-                concurrency: 10,
+                concurrency: 100,
                 // Remove old jobs configuration
                 removeOnComplete: {
                     count: 500, // Keep only 500 completed jobs
