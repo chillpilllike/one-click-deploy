@@ -62,7 +62,7 @@ export const config: VendureConfig = {
               }
             : undefined,
         extra: {
-            max: 100, // Increased connection pool size
+            max: 500, // Increased connection pool size
         },
     },
     paymentOptions: {
