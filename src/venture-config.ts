@@ -94,18 +94,15 @@ export const config: VendureConfig = {
             namingStrategy: new DefaultAssetNamingStrategy(),
             storageStrategyFactory: configureS3AssetStorage({
                 bucket: 'venduretest',
-                credentials: fromEnv(), 
+                credentials: fromEnv(),
                 nativeS3Configuration: {
                     region: process.env.AWS_REGION,
                 },
             }),
         }),
 
-        // Remove DefaultJobQueuePlugin and add BullMQJobQueuePlugin instead
-        // DefaultJobQueuePlugin.init({ useDatabaseForBuffer: true }),
-
+        // Remove DefaultJobQueuePlugin and use BullMQJobQueuePlugin instead
         BullMQJobQueuePlugin.init({
-            // Use your Redis connection details here:
             connection: {
                 host: 'venture-test_vendure-redis-test',
                 port: 6379,
@@ -113,12 +110,20 @@ export const config: VendureConfig = {
                 password: '2653a8b81def45563b3b',
             },
             workerOptions: {
-                concurrency: 100, // Increase concurrency as needed
+                concurrency: 10,
+                // Remove old jobs configuration
+                removeOnComplete: {
+                    count: 500, // Keep only 500 completed jobs
+                },
+                removeOnFail: {
+                    age: 60 * 60 * 24 * 7, // 7 days in seconds
+                    count: 1000,           // Keep up to 1000 failed jobs
+                },
             },
         }),
 
         DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: true }),
-        
+
         EmailPlugin.init({
             devMode: true,
             outputPath: path.join(__dirname, '../static/email/test-emails'),
