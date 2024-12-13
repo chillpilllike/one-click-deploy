@@ -131,7 +131,7 @@ export const config: VendureConfig = {
             },
         }),
 
-        DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: true }),
+        DefaultSearchPlugin.init({ bufferUpdates: true, indexStockStatus: true }),
 
         EmailPlugin.init({
             devMode: true,
