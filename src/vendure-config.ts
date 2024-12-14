@@ -122,7 +122,7 @@ export const config: VendureConfig = {
                 maxRetriesPerRequest: null,
             },
             workerOptions: {
-                concurrency: 100,
+                concurrency: 500,
                 // Remove old jobs configuration
                 removeOnComplete: {
                     count: 500, // Keep only 500 completed jobs
